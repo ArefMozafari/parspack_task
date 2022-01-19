@@ -5,6 +5,7 @@ import 'package:parspack_task/Views/Pages/main_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefs.initialize();
+  print("object");
   runApp(const MyApp());
 }
 
