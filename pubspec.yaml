@@ -30,8 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
-  hydrated_bloc: ^8.0.0
-  shared_preferences: ^2.0.12
+  url_strategy: ^0.2.0
+  beamer: ^1.2.0
   universal_html: ^2.0.8
 
 

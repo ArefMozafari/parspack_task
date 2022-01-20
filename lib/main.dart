@@ -1,29 +1,32 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:parspack_task/Core/shared_pref.dart';
+import 'package:parspack_task/Core/beamer.dart';
 import 'package:parspack_task/Views/Pages/main_page.dart';
+import 'package:url_strategy/url_strategy.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SharedPrefs.initialize();
-  print("object");
-  runApp(const MyApp());
+void main() {
+  setPathUrlStrategy();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final BeamerDelegate route = BeamerDelegate(
+      locationBuilder: BeamerLocationBuilder(beamLocations: [AppBeamer()]),
+      notFoundRedirectNamed: '/');
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'ParsPack Task',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: "/",
-      routes: {
-        "/" : (context) => const MainPage()
-      },
+      routerDelegate: route,
+      routeInformationParser: BeamerParser(),
+      backButtonDispatcher: BeamerBackButtonDispatcher(delegate: route),
     );
   }
 }

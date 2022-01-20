@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parspack_task/Controller/number_controller.dart';
-import 'package:parspack_task/Repository/number_repository.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({Key? key}) : super(key: key);
@@ -14,9 +13,8 @@ class ResultPage extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            BlocBuilder<NumberController, int>(
-              builder: (context, state) => Text(
-                  NumberRepository().number.toString(),
+            BlocBuilder<NumberController, NumberControllerStates>(
+              builder: (context, state) => Text(state.number.toString(),
                   style: const TextStyle(fontSize: 50)),
             ),
             const Spacer(),
